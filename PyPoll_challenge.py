@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[40]:
+# In[19]:
 
 
 import os
@@ -40,7 +40,6 @@ winning_percentage = 0
 # Open the election results and read the file.
 with open(file_to_load) as election_data:
     file_reader = csv.reader(election_data)
-
     # Read the header row. 
     headers = next(file_reader)
    
@@ -75,38 +74,32 @@ with open(file_to_load) as election_data:
         #add up county votes when it matches    
         county_votes[county_name] +=1
     
-    # challenge objective 
-    # for loop all counties 
+# challenge open write file 
+# for loop all counties 
 with open(file_to_save, "w") as txt_file:
     for county in county_votes: 
         #figure out county vote count and percentages
         county_vote = county_votes[county]
         county_percent = int(county_vote)/int(total_votes) *100
-        
+
         county_results = (
-            f"{county}: {county_percent:.1f}% ({county_vote:,})\n")
+        f"{county}: {county_percent:.1f}% ({county_vote:,})\n")
         print(county_results, end="")
         txt_file.write(county_results)
-        
+
         # challenge determin winning county 
         if (county_vote > lcounty_votes):
             lcounty_votes = county_vote
             lcounty = county
-
-    #print the county with the largest turnout
+        #print the county with the largest turnout
     lcounty = (
-        f"\n------------------\n"
-        f"Largest County turn out is: {lcounty}\n"
-        f"\n------------------\n")
+    f"\n------------------\n"
+    f"Largest County turn out is: {lcounty}\n"
+    f"\n------------------\n")
 
     print(lcounty)
     txt_file.write(lcounty)
     
- 
-            
-# Save the results to our text file.
-with open(file_to_save, "w") as txt_file:
-
     # Print the final vote count to the terminal.
     election_results = (
         f"\nElection Results\n"
@@ -159,4 +152,10 @@ with open(file_to_save, "w") as txt_file:
     # Save the winning candidate's name to the text file.
     txt_file.write(winning_candidate_summary)
     
+
+
+# In[ ]:
+
+
+
 
